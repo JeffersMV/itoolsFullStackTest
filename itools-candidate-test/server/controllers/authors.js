@@ -13,9 +13,7 @@ function getAuthors(req, res) {
             authors: authors
         });
     }).catch(err => {
-        res.json({
-            message: err.message
-        });
+        console.error(err.message);
     });
 }
 
@@ -26,7 +24,6 @@ function getAuthors(req, res) {
  * @returns {void}
  */
 function getAuthorById(req, res) {
-    //TODO implement
     let id = req.params.id;
     Author.findById(id)
         .then(author => {
@@ -37,9 +34,7 @@ function getAuthorById(req, res) {
             });
         })
         .catch(err => {
-            res.json({
-                message: err
-            });
+            console.error(err.message);
         });
 }
 
@@ -62,7 +57,7 @@ function updateAuthor(req, res) {
                     author: author
                 });
             })
-            .catch(err => {
+            .catch(() => {
                 res.status(400).send({errors: ["Author with this id already exist"]});
             });
     } else res.status(400).send({errors: ["E-mail is require"]});
@@ -108,11 +103,10 @@ function removeAuthor(req, res) {
             else res.status(404).send({errors: ["Author not exist"]});
         })
         .catch(err => {
-            err.message
+            console.error(err.message);
         });
 }
 
-//TODO add other methods
 exports.getAuthors = getAuthors;
 exports.getAuthorById = getAuthorById;
 exports.updateAuthor = updateAuthor;

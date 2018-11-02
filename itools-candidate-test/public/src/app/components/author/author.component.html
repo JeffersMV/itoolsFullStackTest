@@ -1,0 +1,75 @@
+<div class="col-lg-1">
+  <app-sidebar></app-sidebar>
+</div>
+<div class="col-lg-11">
+  <div class="row">
+    <div class="col-lg-11">
+      ToolBAR
+      <!--<p-toolbar>-->
+        <!--<div class="breadcrumb-wrapper">-->
+          <!--<h4>-->
+            <!--<span [routerLink]="['/home']" id="linkOver">-->
+              <!--Home-->
+            <!--</span>-->
+            <!--/ Authors-->
+          <!--</h4>-->
+          <!--<button mat-stroked-button (click)="displayDialog = true" *ngIf="!hasAccess(2)"><i class="fas fa-plus"></i>-->
+            <!--Add Author-->
+          <!--</button>-->
+        <!--</div>-->
+      <!--</p-toolbar>-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-11">
+      <div class="view-side-form">
+        <router-outlet></router-outlet>
+      </div>
+      <p-table [totalRecords]="totalRecords" sortField="secondName,firstName" [sortOrder]="sortOrderEnum.Asc"
+               [value]="authors" [rows]="settingsService.rowsCount" [paginator]="true"
+               [rowHover]="true" #dt>
+        <ng-template pTemplate="caption">
+          Author Data
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th class="text-center" pSortableColumn="secondName;firstname">Author
+              <p-sortIcon field="secondName;firstname"></p-sortIcon>
+            </th>
+            <th class="text-center" pSortableColumn="email">E-mail
+              <p-sortIcon field="email"></p-sortIcon>
+            </th>
+            <th class="text-center" pSortableColumn="birthDate">Birth Date
+              <p-sortIcon field="birthDate"></p-sortIcon>
+            </th>
+            <th class="text-center" pSortableColumn="book">Book
+              <p-sortIcon field="book"></p-sortIcon>
+            </th>
+          </tr>
+          <tr>
+            <th class="ui-fluid">
+              <input pInputText placeholder="Second Name" type="text" (change)="loadData()"
+                     [(ngModel)]="customFilters.secondName">
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowDataAuthor>
+          <tr [routerLink]="['details-author', rowDataAuthor.id]" matTooltip="View Author Details" [matTooltipPosition]="'right'">
+            <td>{{rowDataAuthor.secondName}}, {{rowDataAuthor.firstName}}
+            </td>
+            <td>{{rowDataAuthor.email}}
+            </td>
+            <td>{{rowDataAuthor.birthDate  | date:'MM/dd/yyyy'}}
+            </td>
+            <td>{{rowDataAuthor.book}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<!--<app-add-author [(displayDialogAddAuthor)]="displayDialogAddAuthor" (displayDialogChange)="create($event)"></app-add-author>-->

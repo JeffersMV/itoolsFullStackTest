@@ -13,9 +13,7 @@ function getBooks(req, res) {
             books: books
         });
     }).catch(err => {
-        res.json({
-            message: err.message
-        });
+        console.error(err.message);
     });
 }
 
@@ -26,7 +24,6 @@ function getBooks(req, res) {
  * @returns {void}
  */
 function getBookById(req, res) {
-    //TODO implement
     let id = req.params.id;
     Book.findById(id)
         .then(book => {
@@ -37,9 +34,7 @@ function getBookById(req, res) {
             });
         })
         .catch(err => {
-            res.json({
-                message: err
-            });
+            console.error(err.message);
         });
 }
 
@@ -62,7 +57,7 @@ function updateBook(req, res) {
                     book: book
                 });
             })
-            .catch(err => {
+            .catch(() => {
                 res.status(400).send({errors: ["Book with this id already exist"]});
             });
     } else
@@ -109,11 +104,10 @@ function removeBook(req, res) {
             else res.status(404).send({errors: ["Book not exist"]});
         })
         .catch(err => {
-            err.message
+            console.error(err.message);
         });
 }
 
-//TODO add other methods
 exports.getBooks = getBooks;
 exports.getBookById = getBookById;
 exports.updateBook = updateBook;

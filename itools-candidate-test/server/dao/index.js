@@ -1,4 +1,3 @@
-//TODO implement Data Access Layer
 const mongoose = require('mongoose');
 const Author = require('../models/Author');
 const Book = require('../models/Book');
@@ -12,7 +11,6 @@ const bookCollection = require('../initial/books');
  * @param {Object} config - database config
  */
 function DAO(config) {
-    //TODO init database
     let connectionString = `mongodb://${config.host}:${config.port}/${config.name}`;
     mongoose.Promise = global.Promise;
     mongoose.connect(connectionString, {useNewUrlParser: true})
@@ -30,12 +28,12 @@ function DAO(config) {
  * @returns {void}
  */
 DAO.prototype.init = function (data, callback) {
-    //TODO create instance and load data
     this.clear((err, db) => {
         if (err) {
             console.log(`ERROR! Error clear!`);
             console.error(err);
-        } else console.log(`Database cleanup completed successfully!`);
+        } else
+            console.log(`Database cleanup completed successfully!`);
         try {
             Author.collection.insertMany(authorCollection);
             Book.collection.insertMany(bookCollection);
@@ -54,7 +52,6 @@ DAO.prototype.init = function (data, callback) {
  * @returns {void}
  */
 DAO.prototype.clear = function (callback) {
-    //TODO clear database
     Author.collection.deleteMany();
     Book.collection.deleteMany();
     callback && callback();

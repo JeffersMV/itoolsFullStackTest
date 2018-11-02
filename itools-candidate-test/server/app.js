@@ -6,10 +6,10 @@ const path = require('path');
 const DAO = require('./dao');
 const authors = require('./routes/authors');
 const books = require('./routes/books');
-// const authorCollection = require('./initial/authors');
-// const bookCollection = require('./initial/books');
+const cors = require('cors');
 
 const PORT = 3000;
+const frontEndUrl = 'http://localhost:4200';
 
 const app = express();
 const dao = new DAO({host: 'localhost', port: 27017, name: 'todo'});
@@ -21,12 +21,23 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
+let originsWhitelist = [
+    frontEndUrl
+];
+let corsOptions = {
+    origin: function(origin, callback){
+        let isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+        callback(null, isWhitelisted);
+    },
+    credentials:true
+};
+app.use(cors(corsOptions));
 
 /**
  * Routes
  */
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '../web/index.html'));
+    res.sendFile(path.join(__dirname + '../src/index.html'));
 });
 app.use('/api/authors', authors);
 app.use('/api/books', books);
@@ -40,6 +51,7 @@ dao.init({/*init data*/}, (err, db) => {
         console.log(`Error App!`);
         console.error(err);
     }
+
     /**
      * Start app
      */
