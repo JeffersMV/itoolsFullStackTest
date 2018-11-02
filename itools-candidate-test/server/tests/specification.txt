@@ -1,0 +1,60 @@
+Application
+  Authors
+    HTTP API endpoint's
+      GET /
+        ✓ should return author collection
+      GET /:id
+        ✓ should return specific author
+        ✓ should return error if author not exist
+      PUT /:id
+        ✓ should update author
+        ✓ should return error if author not exist
+        ✓ should return error if author email is empty
+        ✓ should return error if author with the id already exist
+      PATCH /:id
+        ✓ should update specific author filed/property
+        ✓ should return error if author not exist
+        ✓ should return error if author email is empty
+        ✓ should return error if author with the id already exist
+      POST /
+        ✓ should create new author
+        ✓ should return error if author email is empty
+        ✓ should return error if author with the id already exist
+      DELETE /:id
+        ✓ should delete author
+        ✓ should return error if author not exist
+    Controller
+      ✓ has method "getAuthors"
+      ✓ has method "getAuthorById"
+      ✓ has method "updateAuthor"
+      ✓ has method "removeAuthor"
+
+  Books
+    HTTP API endpoint's
+      GET /
+        ✓ should return book collection
+      GET /:id
+        ✓ should return specific book
+        ✓ should return error if book not exist
+      PUT /:id
+        ✓ should update book
+        ✓ should return error if book not exist
+        ✓ should return error if book name is empty
+        ✓ should return error if book with the id already exist
+      PATCH /:id
+        ✓ should update specific book filed/property
+        ✓ should return error if book not exist
+        ✓ should return error if book name is empty
+        ✓ should return error if book with the id already exist
+      POST /
+        ✓ should create new book
+        ✓ should return error if book name is empty
+        ✓ should return error if book with the id already exist
+      DELETE /:id
+        ✓ should delete book
+        ✓ should return error if book not exist
+    Controller
+      ✓ has method "getBooks"
+      ✓ has method "getBookById"
+      ✓ has method "updateBook"
+      ✓ has method "removeBook"

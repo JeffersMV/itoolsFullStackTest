@@ -1,0 +1,80 @@
+{
+  "_from": "itools-candidate-test",
+  "_id": "itools-candidate-test@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-hm7tX2KpC3WVfwHatZ4YqiSGLNo=",
+  "_location": "/itools-candidate-test",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "itools-candidate-test",
+    "name": "itools-candidate-test",
+    "escapedName": "itools-candidate-test",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/itools-candidate-test/-/itools-candidate-test-1.0.3.tgz",
+  "_shasum": "866eed5f62a90b75957f01dab59e18aa24862cda",
+  "_spec": "itools-candidate-test",
+  "_where": "/Users/Home/WebstormProjects/itoolsFullStackTest",
+  "author": {
+    "name": "Artur Basak",
+    "email": "artur.basak@instinctools.ru"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "body-parser": "1.15.2",
+    "chalk": "1.1.3",
+    "clear": "0.0.1",
+    "clui": "0.3.1",
+    "commander": "2.9.0",
+    "express": "4.14.0",
+    "figlet": "1.2.0",
+    "inquirer": "1.2.1",
+    "minimist": "1.2.0",
+    "preferences": "0.2.1",
+    "mongodb": "^3.1.8",
+    "mongoose": "^5.3.7"
+  },
+  "deprecated": false,
+  "description": "JS Test Project for candidate",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "eslint": "2.11",
+    "mocha": "3.1.0",
+    "supertest": "2.0.0"
+  },
+  "homepage": "https://bitbucket.org/archik/itools-candidate-test#readme",
+  "keywords": [
+    "test",
+    "example",
+    "candidate",
+    "js",
+    "es6",
+    "fullstack",
+    "trainee"
+  ],
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "main": "index.js",
+  "name": "itools-candidate-test",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/archik/itools-candidate-test.git"
+  },
+  "scripts": {
+    "start": "node server/app.js",
+    "test": "eslint server && mocha --reporter spec \"server/tests/*.test.js\""
+  },
+  "version": "1.0.3"
+}
