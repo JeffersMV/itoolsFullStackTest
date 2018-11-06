@@ -1,3 +1,140 @@
-<p>
-  details-book works!
-</p>
+<p-sidebar [visible]="true" position="right" [style]="{'width':'50%'}">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <button mat-icon-button [routerLink]="['../../', {}]">
+          <span class="fa-layers fa-1x fa-fw">
+            <i class="fas fa-times " data-fa-transform="shrink-8"></i>
+          </span>
+                </button>
+            </div>
+            <div class="ui-g-8">
+                <h1 style="font-weight:normal">{{bookInfo.name}} Details</h1>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g ui-fluid" *ngIf="bookInfo">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="name">Name</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="name" [(ngModel)]="bookInfo.name"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="publishing">Publishing</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="publishing" [(ngModel)]="bookInfo.publishing"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="ebook">Ebook</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="ebook" [(ngModel)]="bookInfo.ebook"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="year">Year</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="year" [(ngModel)]="bookInfo.year"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="isbn">ISBN</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="isbn" [(ngModel)]="bookInfo.isbn"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="pages">Pages</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="pages" [(ngModel)]="bookInfo.pages"/>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-4">
+            <label>Authors</label>
+        </div>
+        <div class="ui-g-8">
+            <p-table [columns]="cols" [value]="allAuthors" [scrollable]="true" scrollHeight="200px">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                        ariaLabelDesc="Activate to sort in descending order"
+                                        ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary" let-rowData>
+                    <div style="text-align:left">
+                        <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()"
+                                label="Add"></button>
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-close" [routerLink]="['../../', {}]" label="Cancel"></button>
+            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-sidebar>
+
+<p-dialog header="Add author's book" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+          [width]="400">
+    <p-table [columns]="cols" [value]="allAuthors" selectionMode="single" [(selection)]="selectedAuthor"
+             [scrollable]="true" scrollHeight="200px">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                ariaLabelDesc="Activate to sort in descending order"
+                                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div style="text-align: left">
+                Selected Author: {{selectedAuthor ? selectedAuthor.label + ' - ' + selectedAuthor.value: 'none'}}
+            </div>
+        </ng-template>
+    </p-table>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-close" (click)="displayDialog=false" label="Cancel"></button>
+            <button type="button" pButton icon="fa fa-plus" (click)="save()" label="Add"></button>
+        </div>
+    </p-footer>
+</p-dialog>

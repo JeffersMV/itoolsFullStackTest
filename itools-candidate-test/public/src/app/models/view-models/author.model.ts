@@ -1,5 +1,5 @@
 export class AuthorModel{
-    public id: number;
+    public _id: number;
     public firstName: string;
     public secondName: string;
     public email: string;
@@ -7,9 +7,9 @@ export class AuthorModel{
     public book: object;
 
     constructor();
-    constructor(id: number, firstName: string, secondName: string, email: string, birthDate: Date, book: object);
-    constructor(id?: number, firstName?: string, secondName?: string, email?: string, birthDate?: Date, book?: object) {
-        this.id = id;
+    constructor(_id: number, firstName: string, secondName: string, email: string, birthDate: Date, book: object);
+    constructor(_id?: number, firstName?: string, secondName?: string, email?: string, birthDate?: Date, book?: object) {
+        this._id = _id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;

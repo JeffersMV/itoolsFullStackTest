@@ -5,7 +5,7 @@ import {AuthorFilterModel} from "../models/filter-models/author-filter.model";
 
 @Injectable()
 export class AuthorService extends BaseApiService {
-    private apiAuthorsUrl = `/api/authors`;
+    private apiAuthorsUrl = `/api/authors/`;
 
     getAuthors() {
         return this.get(this.apiAuthorsUrl);

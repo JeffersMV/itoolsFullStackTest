@@ -6,6 +6,7 @@ const path = require('path');
 const DAO = require('./dao');
 const authors = require('./routes/authors');
 const books = require('./routes/books');
+const options = require('./routes/options');
 const cors = require('cors');
 
 const PORT = 3000;
@@ -41,6 +42,7 @@ app.get('/', function (req, res) {
 });
 app.use('/api/authors', authors);
 app.use('/api/books', books);
+app.use('/api/options', options);
 
 /**
  * Init database

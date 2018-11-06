@@ -20,7 +20,6 @@ export abstract class BaseApiService {
     private static getOptions(): any {
         let opts: HttpHeaders = new HttpHeaders();
         opts = opts.append('Content-Type',  'application/json;charset=utf-8');
-        // opts = opts.append('Accept', 'application/json');
         return {headers: opts};
     }
 

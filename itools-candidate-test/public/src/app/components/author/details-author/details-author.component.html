@@ -1,3 +1,124 @@
-<p>
-  details-author works!
-</p>
+<p-sidebar [visible]="true" position="right" [style]="{'width':'50%'}">
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <button mat-icon-button [routerLink]="['../../', {}]">
+          <span class="fa-layers fa-1x fa-fw">
+            <i class="fas fa-times " data-fa-transform="shrink-8"></i>
+          </span>
+                </button>
+            </div>
+            <div class="ui-g-8">
+                <h1 style="font-weight:normal">{{authorInfo.secondName}} {{authorInfo.firstName}} Details</h1>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g ui-fluid" *ngIf="authorInfo">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="secondName">Name</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="secondName" [(ngModel)]="authorInfo.secondName"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="firstName">Publishing</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="firstName" [(ngModel)]="authorInfo.firstName"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="email">Ebook</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="email" [(ngModel)]="authorInfo.email"/>
+            </div>
+        </div>
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="birthDate">Year</label>
+            </div>
+            <div class="ui-g-8">
+                <input pInputText id="birthDate" [(ngModel)]="authorInfo.birthDate"/>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g-12">
+        <div class="ui-g-4">
+            <label>Books</label>
+        </div>
+        <div class="ui-g-8">
+            <p-table [columns]="cols" [value]="allBooks" [scrollable]="true" scrollHeight="200px">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                        ariaLabelDesc="Activate to sort in descending order"
+                                        ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary" let-rowData>
+                    <div style="text-align:left">
+                        <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()"
+                                label="Add"></button>
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-close" [routerLink]="['../../', {}]" label="Cancel"></button>
+            <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-sidebar>
+
+<p-dialog header="Add a book to the author" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+          [width]="400">
+    <p-table [columns]="cols" [value]="allBooks" selectionMode="single" [(selection)]="selectedBook"
+             [scrollable]="true" scrollHeight="200px">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                ariaLabelDesc="Activate to sort in descending order"
+                                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div style="text-align: left">
+                Selected Book: {{selectedBook ? selectedBook.label + ' - ' + selectedBook.value: 'none'}}
+            </div>
+        </ng-template>
+    </p-table>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button type="button" pButton icon="fa fa-close" (click)="displayDialog=false" label="Cancel"></button>
+            <button type="button" pButton icon="fa fa-plus" (click)="save()" label="Add"></button>
+        </div>
+    </p-footer>
+</p-dialog>

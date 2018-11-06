@@ -7,7 +7,6 @@ import {SortOrderEnum} from '../../constants';
 import {SettingsService} from "../../services/configuration/settings.service";
 import {PagingResultModel} from "../../models/paging-result.model";
 
-
 @Component({
     selector: 'app-autor',
     templateUrl: './author.component.html',
@@ -42,7 +41,6 @@ export class AuthorComponent implements OnInit {
         );
     }
 
-
     lazyLoadAuthors(event: LazyLoadEvent) {
         this.page = event.first / event.rows;
         this.size = event.rows;
@@ -66,15 +64,14 @@ export class AuthorComponent implements OnInit {
         );
     }
 
-
     create(event: any) {
-        // let books = [...this.books];
-        // this.dataProviderService.addBook(this.book).subscribe(book => {
-        //     this.book = book[0];
-        //     books.push(this.book);
-        //     this.books = books;
-        //     this.book = null;
-        //     this.displayDialogAdd = false;
+        // let authors = [...this.authors];
+        // this.authorService.createAuthor(this.author).subscribe(author => {
+        //     this.author = author[0];
+        //     authors.push(this.author);
+        //     this.authors = authors;
+        //     this.author = null;
+        //     this.displayDialogAddAuthor = false;
         // });
     }
 }

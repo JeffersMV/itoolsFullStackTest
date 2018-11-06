@@ -1,6 +1,6 @@
 import {Injector, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
     AccordionModule,
@@ -12,6 +12,14 @@ import {
 } from "primeng/primeng";
 import {GrowlModule} from 'primeng/growl';
 import {TableModule} from 'primeng/table';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ToolbarModule } from 'primeng/toolbar';
+import { SidebarModule } from 'primeng/sidebar';
+import {InplaceModule} from 'primeng/inplace';
+import {ListboxModule} from 'primeng/listbox';
+import {CheckboxModule} from 'primeng/checkbox';
+import {MultiSelectModule} from 'primeng/multiselect';
+
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -23,6 +31,7 @@ import {AppComponent} from './app.component';
 import {MenuComponent} from './components/menu/menu.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
+import {MessagegrowlComponent} from './components/messagegrowl/messagegrowl.component';
 import {LocatorService} from "./services/configuration/locator.service";
 import {SettingsService} from "./services/configuration/settings.service";
 import {GlobalCommunicationService} from "./services/configuration/global-communication.service";
@@ -36,6 +45,7 @@ import {DetailsAuthorComponent} from './components/author/details-author/details
 import {HomeComponent} from './components/home/home.component';
 import {AuthorService} from "./services/author.service";
 import {BookService} from "./services/book.service";
+import {OptionsService} from "./services/options.service";
 
 
 export function configFactory(http: HttpClient) {
@@ -46,6 +56,7 @@ export function configFactory(http: HttpClient) {
     declarations: [
         AppComponent,
         MenuComponent,
+        MessagegrowlComponent,
         SidebarComponent,
         AuthorComponent,
         AddAuthorComponent,
@@ -75,11 +86,20 @@ export function configFactory(http: HttpClient) {
         HttpClientModule,
         GrowlModule,
         TableModule,
+        ProgressSpinnerModule,
+        ToolbarModule,
+        SidebarModule,
+        InplaceModule,
+        ReactiveFormsModule,
+        ListboxModule,
+        CheckboxModule,
+        MultiSelectModule,
         MatTooltipModule
     ],
     providers: [
         AuthorService,
         BookService,
+        OptionsService,
         SettingsService,
         GlobalCommunicationService
     ],

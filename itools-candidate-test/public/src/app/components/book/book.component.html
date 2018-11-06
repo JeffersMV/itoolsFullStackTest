@@ -1,93 +1,91 @@
-<div class="col-lg-1">
-    <app-sidebar></app-sidebar>
-</div>
-<div class="col-lg-11">
-    <div class="row">
-        <div class="col-lg-11">
-            ToolBAR
-            <!--<p-toolbar>-->
-            <!--<div class="breadcrumb-wrapper">-->
-            <!--<h4>-->
-            <!--<span [routerLink]="['/home']" id="linkOver">-->
-            <!--Home-->
-            <!--</span>-->
-            <!--/ Authors-->
-            <!--</h4>-->
-            <!--<button mat-stroked-button (click)="displayDialog = true" *ngIf="!hasAccess(2)"><i class="fas fa-plus"></i>-->
-            <!--Add Author-->
-            <!--</button>-->
-            <!--</div>-->
-            <!--</p-toolbar>-->
-        </div>
+<div class="row">
+    <div class="col-lg-1">
+        <app-sidebar></app-sidebar>
     </div>
-    <div class="row">
-        <div class="col-lg-11">
-            <div class="view-side-form">
-                <router-outlet></router-outlet>
+    <div class="col-lg-11">
+        <div class="row">
+            <div class="col-lg-11">
+                <p-toolbar>
+                    <div class="breadcrumb-wrapper">
+                        <h4>
+                            <span [routerLink]="['/home']" id="linkOver">Home / </span>Books
+                        </h4>
+                        <button mat-stroked-button (click)="displayDialogAddBook = true"><i class="fas fa-plus"></i>
+                            Add Book
+                        </button>
+                    </div>
+                </p-toolbar>
             </div>
-            <p-table [totalRecords]="totalRecords" sortField="name" [sortOrder]="sortOrderEnum.Asc"
-                     [value]="books" [rows]="settingsService.rowsCount" [paginator]="true"
-                     [rowHover]="true" #dt>
-                <ng-template pTemplate="caption">
-                    Author Data
-                </ng-template>
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th class="text-center" pSortableColumn="name">Name
-                            <p-sortIcon field="name"></p-sortIcon>
-                        </th>
-                        <th class="text-center" pSortableColumn="author">Author
-                            <p-sortIcon field="author"></p-sortIcon>
-                        </th>
-                        <th class="text-center" pSortableColumn="publishing">Publishing
-                            <p-sortIcon field="publishing"></p-sortIcon>
-                        </th>
-                        <th class="text-center" pSortableColumn="ebook">Ebook
-                            <p-sortIcon field="ebook"></p-sortIcon>
-                        </th>
-                        <th class="text-center" pSortableColumn="year">Year
-                            <p-sortIcon field="year"></p-sortIcon>
-                        </th>
-                        <th class="text-center" pSortableColumn="isbn">Isbn
-                            <p-sortIcon field="isbn"></p-sortIcon>
-                        </th>
-                        <th class="text-center" pSortableColumn="pages">Pages
-                            <p-sortIcon field="pages"></p-sortIcon>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th class="ui-fluid">
-                            <input pInputText placeholder="Name" type="text" (change)="loadData()"
-                                   [(ngModel)]="customFilters.name">
-                        </th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-rowDataBook>
-                    <tr [routerLink]="['./details', rowDataBook.id]" matTooltip="View Book Details"
-                        [matTooltipPosition]="'right'">
-                        <td>{{rowDataBook.name}}
-                        </td>
-                        <td>{{rowDataBook.author}}
-                        </td>
-                        <td>{{rowDataBook.publishing}}
-                        </td>
-                        <td>{{rowDataBook.ebook}}
-                        </td>
-                        <td>{{rowDataBook.year | date:'yyyy'}}
-                        </td>
-                        <td>{{rowDataBook.isbn}}
-                        </td>
-                        <td>{{rowDataBook.pages}}
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
+        </div>
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="view-side-form">
+                    <router-outlet></router-outlet>
+                </div>
+                <p-table [totalRecords]="totalRecords" sortField="name" [sortOrder]="sortOrderEnum.Asc"
+                         [value]="books" [rows]="settingsService.rowsCount" [paginator]="true"
+                         [rowHover]="true" #dt>
+                    <ng-template pTemplate="caption">
+                        Author Data
+                    </ng-template>
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th class="text-center" pSortableColumn="name">Name
+                                <p-sortIcon field="name"></p-sortIcon>
+                            </th>
+                            <th class="text-center" pSortableColumn="publishing">Publishing
+                                <p-sortIcon field="publishing"></p-sortIcon>
+                            </th>
+                            <th class="text-center" pSortableColumn="ebook">Ebook
+                                <p-sortIcon field="ebook"></p-sortIcon>
+                            </th>
+                            <th class="text-center" pSortableColumn="year">Year
+                                <p-sortIcon field="year"></p-sortIcon>
+                            </th>
+                            <th class="text-center" pSortableColumn="isbn">Isbn
+                                <p-sortIcon field="isbn"></p-sortIcon>
+                            </th>
+                            <th class="text-center" pSortableColumn="pages">Pages
+                                <p-sortIcon field="pages"></p-sortIcon>
+                            </th>
+                            <th class="text-center" pSortableColumn="author">Author
+                                <p-sortIcon field="author"></p-sortIcon>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="ui-fluid">
+                                <input pInputText placeholder="Name" type="text" (change)="loadData()"
+                                       [(ngModel)]="customFilters.name">
+                            </th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowDataBook>
+                        <tr [routerLink]="['details-book', rowDataBook._id]" matTooltip="View Book Details"
+                            [matTooltipPosition]="'right'">
+                            <td>{{rowDataBook.name}}
+                            </td>
+                            <td>{{rowDataBook.publishing}}
+                            </td>
+                            <td>{{rowDataBook.ebook}}
+                            </td>
+                            <td>{{rowDataBook.year | date:'yyyy'}}
+                            </td>
+                            <td>{{rowDataBook.isbn}}
+                            </td>
+                            <td>{{rowDataBook.pages}}
+                            </td>
+                            <td>{{rowDataBook.author}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
         </div>
     </div>
 </div>
