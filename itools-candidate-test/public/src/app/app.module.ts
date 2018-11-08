@@ -31,7 +31,6 @@ import {AppComponent} from './app.component';
 import {MenuComponent} from './components/menu/menu.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
-import {MessagegrowlComponent} from './components/messagegrowl/messagegrowl.component';
 import {LocatorService} from "./services/configuration/locator.service";
 import {SettingsService} from "./services/configuration/settings.service";
 import {GlobalCommunicationService} from "./services/configuration/global-communication.service";
@@ -56,7 +55,6 @@ export function configFactory(http: HttpClient) {
     declarations: [
         AppComponent,
         MenuComponent,
-        MessagegrowlComponent,
         SidebarComponent,
         AuthorComponent,
         AddAuthorComponent,
