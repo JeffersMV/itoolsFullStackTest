@@ -4,11 +4,11 @@ const Book = require('../models/Book');
 
 function getAuthorItems(req, res) {
     Author.find({}, '_id secondName').then(authors => {
-        console.log(authors);
-        authors = JSON.parse(JSON.stringify(authors).split('"_id":').join('"label":'));
-        authors = JSON.parse(JSON.stringify(authors).split('"secondName":').join('"value":'));
+        const authorsModified = authors.map((author) => {
+            return {"label" : author._id, "value": author.name};
+        });
         res.json({
-            authorItems: authors
+            authorItems: authorsModified
         });
     }).catch(err => {
         console.error(err.message);
@@ -17,10 +17,11 @@ function getAuthorItems(req, res) {
 
 function getBookItems(req, res) {
     Book.find({}, '_id name').then(books => {
-        books = JSON.parse(JSON.stringify(books).split('"_id":').join('"label":'));
-        books = JSON.parse(JSON.stringify(books).split('"name":').join('"value":'));
+        const booksModified = books.map((book) => {
+            return {"label" : book._id, "value": book.name};
+        });
         res.json({
-            bookItems: books
+            bookItems: booksModified
         });
     }).catch(err => {
         console.error(err.message);
