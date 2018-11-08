@@ -34,13 +34,15 @@
     "clear": "0.0.1",
     "clui": "0.3.1",
     "commander": "2.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
     "express": "4.14.0",
     "figlet": "1.2.0",
     "inquirer": "1.2.1",
     "minimist": "1.2.0",
-    "preferences": "0.2.1",
     "mongodb": "^3.1.8",
-    "mongoose": "^5.3.7"
+    "mongoose": "^5.3.7",
+    "preferences": "0.2.1"
   },
   "deprecated": false,
   "description": "JS Test Project for candidate",
