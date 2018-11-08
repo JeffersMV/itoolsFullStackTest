@@ -1,3 +1,4 @@
+'use strict';
 const mongoose = require('mongoose');
 const Author = require('../models/Author');
 const Book = require('../models/Book');
@@ -13,7 +14,7 @@ const bookCollection = require('../initial/books');
 function DAO(config) {
     let connectionString = `mongodb://${config.host}:${config.port}/${config.name}`;
     mongoose.Promise = global.Promise;
-    mongoose.connect(connectionString, {useNewUrlParser: true})
+    mongoose.connect(connectionString, {useNewUrlParser: true, useFindAndModify: false})
         .then(() => console.log('DB CONNECTED!'))
         .catch(e => {
             console.log('ERROR! DB Connection Failed!');

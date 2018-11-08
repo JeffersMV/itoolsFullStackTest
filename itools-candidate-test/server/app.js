@@ -3,17 +3,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 const DAO = require('./dao');
 const authors = require('./routes/authors');
 const books = require('./routes/books');
 const options = require('./routes/options');
-const cors = require('cors');
 
-const PORT = 3000;
-const frontEndUrl = 'http://localhost:4200';
+require('dotenv').config({path: path.join(__dirname, '../.env')});
+const SERVER_PORT = process.env.SERVER_PORT;
+const frontEndUrl = process.env.FEURL;
 
 const app = express();
-const dao = new DAO({host: 'localhost', port: 27017, name: 'todo'});
+const dao = new DAO({host: process.env.MONGODB_HOST, port: process.env.PORT, name: process.env.NAME});
 
 /**
  * Middleware
@@ -57,8 +58,8 @@ dao.init({/*init data*/}, (err, db) => {
     /**
      * Start app
      */
-    app.listen(PORT, function () {
-        console.log(`App listening on port ${PORT}!`);
+    app.listen(SERVER_PORT, function () {
+        console.log(`App listening on port ${SERVER_PORT}!`);
     });
 });
 
